@@ -1,3 +1,5 @@
+
+
 # 📚 AI Research Assistant for College Students
 
 An intelligent, GenAI-powered assistant that helps students understand, summarize, and explore academic research papers. This project leverages Prompting, RAG (Retrieval-Augmented Generation), Structured Output, and Function Calling.
