@@ -56,10 +56,11 @@ const generateResearchResponse = async (req, res) => {
     Question: "${question}"
     Output (JSON):
     `;
+
     */
 
+/*
     // ✅ MULTI-SHOT
-    /*
     const prompt = `
     Example 1:
     Question: "What is Artificial Intelligence?"
@@ -83,8 +84,7 @@ const generateResearchResponse = async (req, res) => {
     Question: "${question}"
     Output (JSON):
     `;
-    */
-
+     */
     // ✅ SYSTEM + USER PROMPTING
     
     const systemPrompt = `
