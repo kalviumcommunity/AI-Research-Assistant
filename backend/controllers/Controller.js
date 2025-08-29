@@ -86,7 +86,7 @@ const generateResearchResponse = async (req, res) => {
     `;
      */
     // ✅ SYSTEM + USER PROMPTING
-    
+    /*
     const systemPrompt = `
     You are a helpful AI Research Assistant.
     Always respond strictly in JSON:
@@ -100,26 +100,26 @@ const generateResearchResponse = async (req, res) => {
     const userPrompt = `Research Question: "${question}"`;
 
     const prompt = systemPrompt + "\n" + userPrompt;
-    
+    */
 
     // // ✅ DYNAMIC PROMPTING
-    // let extraContext = "";
-    // if (topic) extraContext += ` focusing on ${topic}`;
-    // if (field) extraContext += ` in the field of ${field}`;
-    // if (depth) extraContext += ` with ${depth} level detail`;
+    let extraContext = "";
+    if (topic) extraContext += ` focusing on ${topic}`;
+    if (field) extraContext += ` in the field of ${field}`;
+    if (depth) extraContext += ` with ${depth} level detail`;
 
-    // const prompt = `
-    // You are a research assistant.
-    // Answer the following question${extraContext}:
-    // "${question}"
+    const prompt = `
+    You are a research assistant.
+    Answer the following question${extraContext}:
+    "${question}"
 
-    // Respond only in JSON:
-    // {
-    //   "title": "Short title",
-    //   "summary": "2-3 sentence summary",
-    //   "key_points": ["Point1", "Point2", "Point3"],
-    //   "further_reading": ["Resource1", "Resource2"]
-    // }
+    Respond only in JSON:
+    {
+      "title": "Short title",
+      "summary": "2-3 sentence summary",
+      "key_points": ["Point1", "Point2", "Point3"],
+      "further_reading": ["Resource1", "Resource2"]
+    }
     // `;
 
     // ==========================================================
