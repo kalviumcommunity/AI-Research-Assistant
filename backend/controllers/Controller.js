@@ -103,38 +103,74 @@ const generateResearchResponse = async (req, res) => {
     */
 
     // // ✅ DYNAMIC PROMPTING
-    let extraContext = "";
-    if (topic) extraContext += ` focusing on ${topic}`;
-    if (field) extraContext += ` in the field of ${field}`;
-    if (depth) extraContext += ` with ${depth} level detail`;
+    // let extraContext = "";
+    // if (topic) extraContext += ` focusing on ${topic}`;
+    // if (field) extraContext += ` in the field of ${field}`;
+    // if (depth) extraContext += ` with ${depth} level detail`;
 
-    const prompt = `
-    You are a research assistant.
-    Answer the following question${extraContext}:
-    "${question}"
+    // const prompt = `
+    // You are a research assistant.
+    // Answer the following question${extraContext}:
+    // "${question}"
 
-    Respond only in JSON:
-    {
-      "title": "Short title",
-      "summary": "2-3 sentence summary",
-      "key_points": ["Point1", "Point2", "Point3"],
-      "further_reading": ["Resource1", "Resource2"]
-    }
-    // `;
+    // Respond only in JSON:
+    // {
+    //   "title": "Short title",
+    //   "summary": "2-3 sentence summary",
+    //   "key_points": ["Point1", "Point2", "Point3"],
+    //   "further_reading": ["Resource1", "Resource2"]
+    // }
+    // // `;
 
     // ==========================================================
     // TEMPERATURE (example: more creative answers if enabled)
     // ==========================================================
-    /*
-    const result = await model.generateContent({
-      contents: [{ role: "user", parts: [{ text: prompt }] }],
-      generationConfig: { temperature: 0.9 }, // higher = more creative
-    });
-    */
+    
+    // const result = await model.generateContent({
+    //   contents: [{ role: "user", parts: [{ text: prompt }] }],
+    //   generationConfig: { temperature: 0.9 }, // higher = more creative
+    // });
+    
+
+// Chain of thought prompting
+ let prompt = "";
+    if (strategy === "cot") {
+      prompt = `
+      You are an advanced AI Research Assistant.
+      Use chain-of-thought reasoning: first, think through the problem step by step.
+      Then, provide a final structured JSON output.
+
+      Research Question: "${question}"
+
+      Respond ONLY in JSON with this structure:
+      {
+        "title": "Short title for the research response",
+        "summary": "Brief summary (2-3 sentences)",
+        "reasoning_steps": ["Step 1", "Step 2", "Step 3"],
+        "key_points": ["Point1", "Point2", "Point3"],
+        "further_reading": ["Resource1", "Resource2"]
+      }
+      `;
+    } else {
+      // default fallback: zero-shot
+      prompt = `
+      You are an AI Research Assistant.
+      Answer the following research question in a structured way.
+      Question: "${question}"
+
+      Respond strictly in JSON with this format:
+      {
+        "title": "Short title for the research response",
+        "summary": "Brief summary (2-3 sentences)",
+        "key_points": ["Point1", "Point2", "Point3"],
+        "further_reading": ["Resource1", "Resource2"]
+      }`;
+    }
 
     // ========= CALL GEMINI =========
     const result = await model.generateContent(prompt);
     let response = result.response.text();
+
 
     // Clean up markdown if present
     response = response.replace(/```json|```/g, "").trim();
