@@ -34,7 +34,7 @@ const generateResearchResponse = async (req, res) => {
     // }`;
 
     // ✅ ONE-SHOT
-    
+    /*
     const prompt = `
     Example:
     Question: "What are the impacts of climate change on agriculture?"
@@ -56,7 +56,7 @@ const generateResearchResponse = async (req, res) => {
     Question: "${question}"
     Output (JSON):
     `;
-    
+    */
 
     // ✅ MULTI-SHOT
     /*
@@ -86,7 +86,7 @@ const generateResearchResponse = async (req, res) => {
     */
 
     // ✅ SYSTEM + USER PROMPTING
-    /*
+    
     const systemPrompt = `
     You are a helpful AI Research Assistant.
     Always respond strictly in JSON:
@@ -100,7 +100,7 @@ const generateResearchResponse = async (req, res) => {
     const userPrompt = `Research Question: "${question}"`;
 
     const prompt = systemPrompt + "\n" + userPrompt;
-    */
+    
 
     // // ✅ DYNAMIC PROMPTING
     // let extraContext = "";
