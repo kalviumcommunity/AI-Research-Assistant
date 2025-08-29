@@ -171,8 +171,9 @@ const generateResearchResponse = async (req, res) => {
     const result = await model.generateContent(prompt);
     let response = result.response.text();
 
-
+    // STRUCTURED OUTPUT
     // Clean up markdown if present
+    
     response = response.replace(/```json|```/g, "").trim();
 
     let parsed;
