@@ -1,6 +1,6 @@
 // routes/zeroShot.js
 const express = require("express");
-const { zeroShotPrompt } = require("../controllers/zeroShotController");
+const { zeroShotPrompt } = require("../controllers/Controller");
 
 const router = express.Router();
 
