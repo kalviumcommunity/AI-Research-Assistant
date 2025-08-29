@@ -56,7 +56,10 @@ const generateResearchResponse = async (req, res) => {
     Question: "${question}"
     Output (JSON):
     `;
-   
+
+    */
+
+/*
     // ✅ MULTI-SHOT
     const prompt = `
     Example 1:
@@ -81,8 +84,9 @@ const generateResearchResponse = async (req, res) => {
     Question: "${question}"
     Output (JSON):
     `;
+     */
     // ✅ SYSTEM + USER PROMPTING
-    /*
+    
     const systemPrompt = `
     You are a helpful AI Research Assistant.
     Always respond strictly in JSON:
@@ -96,7 +100,7 @@ const generateResearchResponse = async (req, res) => {
     const userPrompt = `Research Question: "${question}"`;
 
     const prompt = systemPrompt + "\n" + userPrompt;
-    */
+    
 
     // // ✅ DYNAMIC PROMPTING
     // let extraContext = "";
